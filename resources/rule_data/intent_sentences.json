@@ -1,0 +1,6 @@
+{
+  "greeting": ["hello", "hi", "good morning", "good afternoon", "good evening", "how are you"],
+  "goodbye": ["good bye", "88", "see you again"],
+  "product_recommendation": ["show me some shirts", "show me pants in discount"],
+  "return_order": ["return an order", "return"]
+}
