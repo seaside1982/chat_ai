@@ -1,11 +1,20 @@
 import unittest
 from data.product_loader import ProductLoader
+from data.review_info import ReviewProcess
 from handlers.product_ranking_handler import ProductRankingHandler
+from retrieval.top_reviewed_retrieval import TopReviewedRetrieval
 from model_libs.model_loader import ModelLoader
 from model_libs.intent_rule_loader import IntentRule
 from utils.bert_utils import BertUtils
 
 class TestRankingServer(unittest.TestCase):
+    def test_top_reviewed(self):
+        ReviewProcess.load_review_data()
+        rt = TopReviewedRetrieval()
+        top_review_r = rt.retrieve(topk=1)
+
+        self.assertEqual(top_review_r[0], 'product_2')
+
     def test_product_ranking(self):
         BertUtils.load_bert_model()
         ProductLoader.load_products()

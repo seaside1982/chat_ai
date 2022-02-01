@@ -3,5 +3,5 @@
   "product_1": {"name":  "sweater", "price": 20.0, "inventory":  50},
   "product_2": {"name":  "shoe", "price": 20.0, "inventory":  100},
   "product_4": {"name":  "desk", "price": 20.0, "inventory":  200},
-  "product_4": {"name":  "cell phone", "price": 20.0, "inventory":  200}
+  "product_5": {"name":  "cell phone", "price": 20.0, "inventory":  200}
 }
