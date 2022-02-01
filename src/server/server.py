@@ -2,6 +2,7 @@ import uvicorn
 from fastapi import FastAPI, Response, Header, Request
 from model_libs.model_loader import ModelLoader
 from data.product_loader import ProductLoader
+from data.review_info import ReviewProcess
 from model_libs.intent_rule_loader import IntentRule
 from utils.logging_utils import Logger
 from utils.bert_utils import BertUtils
@@ -20,6 +21,8 @@ async def startup():
     Logger.logger.info("ranking model loaded")
     ProductLoader.load_products()
     Logger.logger.info("products loaded")
+    ReviewProcess.load_review_data()
+    Logger.logger.info("review loaded")
 
     Logger.logger.info("server started up")
 
@@ -30,6 +33,10 @@ async def index():
 @app.get('/place_order/')
 async def chat_ai(user: str, product_id: str, shop_id: str):
     PlaceOrderHandler.handle_place_order(user, product_id, shop_id)
+
+@app.get('/submit_review/')
+async def sub_review(user: str, product_id: str, review: str, rating: int):
+    ReviewProcess.write_review(product_id, user, review, rating)
 
 @app.get('/message/')
 async def chat_ai(user: str, message: str):
